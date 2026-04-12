@@ -367,7 +367,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-/* Cloned nav panel (.mobile-nav.d-lg-none): transparent panel; .mobile-nav-overly dims the page */
 .mobile-nav {
   position: fixed;
   top: 72px;
@@ -615,11 +614,24 @@ section .container {
   }
 }
 
+.section-title {
+  width: 60%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .section-title h2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   font-size: 14px;
   font-weight: 300;
   padding: 0;
-  line-height: 1px;
+  line-height: 1.35;
   margin: 0 0 20px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -629,11 +641,24 @@ section .container {
 
 .section-title h2::after {
   content: "";
-  width: 120px;
+  flex: 1 1 auto;
+  align-self: center;
+  min-width: 2rem;
   height: 1px;
-  display: inline-block;
   background: #dee2e6;
-  margin: 4px 10px;
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  .section-title {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .section-title h2 {
+    letter-spacing: 1px;
+    font-size: 13px;
+  }
 }
 
 .section-title p {
@@ -673,6 +698,15 @@ section .container {
 
 .about-me .content p:last-child {
   margin-bottom: 0;
+}
+
+.about-me .about-profile__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 18px rgba(9, 32, 58, 0.45));
 }
 
 /*--------------------------------------------------------------
@@ -929,6 +963,11 @@ section .container {
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
+#education .icon-box {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 .services .icon-box {
   text-align: center;
   background: #09203a;
