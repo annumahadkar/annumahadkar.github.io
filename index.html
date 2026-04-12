@@ -66,6 +66,18 @@
   <!-- End Google Tag Manager (noscript) -->
   <!-- ======= Header ======= -->
   <header id="header" class="header-tops">
+    <video id="header-bg-video" class="header-bg-video" muted loop playsinline autoplay aria-hidden="true"></video>
+    <script>
+      (function () {
+        var v = document.getElementById('header-bg-video');
+        if (!v) return;
+        var pick1 = Math.random() < 0.5;
+        v.src = 'assets/img/background/' + (pick1 ? '1' : '2') + '.mp4';
+        v.load();
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function () { });
+      })();
+    </script>
 
     <div class="container">
 
