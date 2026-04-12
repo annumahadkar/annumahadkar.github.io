@@ -5,14 +5,36 @@
 * License: https://bootstrapmade.com/license/
 */
 
+:root {
+  /* Primary UI copy */
+  --font-site: Helvetica , "Helvetica Neue", Arial, sans-serif;
+  /* Subtitles, small labels, tagline */
+  --font-light: "Helvetica Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Hero name + large section display titles */
+  --font-heading-compressed: "Helvetica", "HelveticaNeue-CondensedBlack", "Arial Narrow",
+    "Nimbus Sans Narrow", "Franklin Gothic Medium", Helvetica, Arial, sans-serif;
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+html {
+  scrollbar-gutter: stable;
+  font-family: var(--font-site);
+}
+
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-site);
   color: #fff;
   position: relative;
   background: transparent;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 body::before {
@@ -42,7 +64,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-site);
 }
 
 /*--------------------------------------------------------------
@@ -98,12 +120,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header h1 {
-  font-size: 48px;
+  font-size: 60px;
   margin-top: 0px;
   padding: 0;
   line-height: 1;
-  font-weight: 700;
-  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-family: var(--font-heading-compressed);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 #header h1 a, #header h1 a:hover {
@@ -112,10 +136,40 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
+/* Hero name: one line on desktop + in compact .header-top bar; stacked only on full-screen hero (mobile) */
+#header .hero-name__word {
+  display: inline;
+}
+
+#header .hero-name__word:not(:last-child)::after {
+  content: "\00a0";
+}
+
+@media (max-width: 991.98px) {
+  /* Full home hero only — avoids multi-line name overlapping About / Education when header is fixed */
+  #header:not(.header-top) .hero-name__word {
+    display: block;
+  }
+
+  #header:not(.header-top) .hero-name__word:not(:last-child)::after {
+    content: none;
+  }
+
+  #header.header-top .hero-name__word {
+    display: inline;
+  }
+
+  #header.header-top .hero-name__word:not(:last-child)::after {
+    content: "\00a0";
+  }
+}
+
 #header h2 {
   font-size: 24px;
   margin-top: 20px;
   color: #12d640;
+  font-family: var(--font-light);
+  font-weight: 300;
 }
 
 #header h2 span {
@@ -153,19 +207,81 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 992px) {
-  #header h1 {
-    font-size: 36px;
-  }
-  #header h2 {
-    font-size: 20px;
-    line-height: 30px;
-  }
-  #header .social-links {
-    margin-top: 15px;
-  }
   #header .container {
     display: flex;
     flex-direction: column;
+    /* stretch so h1 and h2 share the same full inner width (avoids mismatched text boxes) */
+    align-items: stretch;
+    justify-content: center;
+    align-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    text-align: left;
+    padding-top: max(16px, env(safe-area-inset-top, 0px));
+    padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
+    /* one gutter for hero title + tagline; matches left/right */
+    --hero-text-gutter: clamp(16px, 5vw, 28px);
+    padding-left: max(var(--hero-text-gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--hero-text-gutter), env(safe-area-inset-right, 0px));
+  }
+
+  /* h1 + h2: full row width, no extra vw bleed; text inset comes only from .container above */
+  #header h1,
+  #header h2 {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  #header h1 {
+    font-size: clamp(2.5rem, 14vw, 6rem);
+    line-height: 1.05;
+    hyphens: none;
+    -webkit-hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+    font-weight: 700;
+    text-shadow: none;
+  }
+
+  #header h1 a {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+  }
+
+  #header h2 {
+    font-size: clamp(1.15rem, 5.2vw, 1.55rem);
+    line-height: 1.35;
+    hyphens: none;
+    -webkit-hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  #header .social-links {
+    margin-top: 20px;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  /* Compact bar: undo hero-only vertical padding / min-height so h1 centers like the menu button */
+  #header.header-top .container {
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 0;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
   }
 }
@@ -194,7 +310,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   color: #fff;
   font-size: 19px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-site);
   font-weight: 400;
 }
 
@@ -224,58 +340,108 @@ h1, h2, h3, h4, h5, h6 {
 /* Mobile Navigation */
 .mobile-nav-toggle {
   position: fixed;
-  right: 15px;
-  top: 15px;
+  right: 14px;
+  top: 14px;
   z-index: 9998;
-  border: 0;
-  background: none;
-  font-size: 24px;
-  transition: all 0.4s;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(9, 32, 58, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  font-size: 22px;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
   outline: none !important;
   line-height: 1;
   cursor: pointer;
-  text-align: right;
+}
+
+.mobile-nav-toggle:active {
+  transform: scale(0.96);
 }
 
 .mobile-nav-toggle i {
   color: #fff;
 }
 
+/* Cloned nav panel (.mobile-nav.d-lg-none): transparent panel; .mobile-nav-overly dims the page */
 .mobile-nav {
   position: fixed;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
+  top: 72px;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  width: min(calc(100vw - 32px), 380px);
+  max-height: min(calc(100vh - 96px), 520px);
   z-index: 9999;
+  overflow-x: hidden;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.7);
-  transition: ease-in-out 0s;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+  transform: translateX(-50%) translateY(-10px);
   opacity: 0;
   visibility: hidden;
-  border-radius: 10px;
-  padding: 10px 0;
-  border: 2px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease, transform 0.28s ease;
 }
 
-.mobile-nav * {
+.mobile-nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  margin: 0;
+  padding: 0 4px;
+  list-style: none;
+  width: 100%;
+}
+
+.mobile-nav li {
   margin: 0;
   padding: 0;
   list-style: none;
+  width: 100%;
+  text-align: center;
 }
 
 .mobile-nav a {
   display: block;
   position: relative;
-  color: #fff;
-  padding: 10px 20px;
+  color: #e8eef5;
+  padding: 14px 18px;
+  font-family: var(--font-site);
+  font-size: 17px;
   font-weight: 500;
+  text-align: center;
   outline: none;
+  border-radius: 12px;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
-.mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
-  color: #1c7d32;
+.mobile-nav a span {
+  display: inline-block;
+}
+
+.mobile-nav a:hover,
+.mobile-nav .active > a,
+.mobile-nav li:hover > a {
+  color: #12d640;
+  background: rgba(18, 214, 64, 0.12);
   text-decoration: none;
+}
+
+.mobile-nav .active > a {
+  background: rgba(18, 214, 64, 0.16);
+  box-shadow: 0 0 0 1px rgba(18, 214, 64, 0.25);
 }
 
 .mobile-nav-overly {
@@ -285,10 +451,12 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   position: fixed;
-  background: rgba(9, 9, 9, 0.6);
+  background: rgba(1, 14, 27, 0.62);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   overflow: hidden;
   display: none;
-  transition: ease-in-out 0s;
+  transition: opacity 0.25s ease;
 }
 
 .mobile-nav-active {
@@ -298,10 +466,39 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-nav-active .mobile-nav {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.mobile-nav-active .mobile-nav-toggle {
+  background: rgba(18, 214, 64, 0.2);
+  border-color: rgba(18, 214, 64, 0.35);
 }
 
 .mobile-nav-active .mobile-nav-toggle i {
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .mobile-nav {
+    top: 66px;
+    width: min(calc(100vw - 24px), 360px);
+    max-height: min(calc(100vh - 88px), 480px);
+    padding: 14px 10px 18px;
+    border-radius: 14px;
+  }
+
+  .mobile-nav a {
+    font-size: 16px;
+    padding: 13px 14px;
+  }
 }
 
 /* Header Top */
@@ -312,6 +509,9 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   right: 0;
   background: #09203a;
+  /* Base #header uses align-items: center so .container shrink-wraps; stretch fills bar height */
+  display: flex;
+  align-items: stretch;
 }
 
 #header.header-top .social-links, #header.header-top h2 {
@@ -319,13 +519,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-top h1 {
-  margin-right: auto;
-  font-size: 36px;
+  margin: 0 auto 0 0;
+  font-size: 24px;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  min-height: 0;
+}
+
+#header.header-top h1 a {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
 }
 
 #header.header-top .container {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  /* Always strip hero vertical padding (from #header .container @ ≤992px) in compact bar */
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 #header.header-top .nav-menu {
@@ -337,7 +557,27 @@ h1, h2, h3, h4, h5, h6 {
     height: 60px;
   }
   #header.header-top h1 {
-    font-size: 26px;
+    font-size: 18px;
+  }
+}
+
+/*
+ * Compact top bar only (#header.header-top): vertically center the menu button with the h1.
+ * Full home hero is unchanged (no :not() rules — we never target body without .header-top).
+ */
+@supports selector(:has(*)) {
+  @media (max-width: 768px) {
+    body:has(#header.header-top) .mobile-nav-toggle {
+      top: calc((60px - 44px) / 2);
+      margin-top: 0;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 991.98px) {
+    body:has(#header.header-top) .mobile-nav-toggle {
+      top: calc((90px - 46px) / 2);
+      margin-top: 0;
+    }
   }
 }
 
@@ -377,14 +617,14 @@ section .container {
 
 .section-title h2 {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 300;
   padding: 0;
   line-height: 1px;
   margin: 0 0 20px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #dee2e6;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-light);
 }
 
 .section-title h2::after {
@@ -400,9 +640,10 @@ section .container {
   margin: 0;
   margin: -15px 0 15px 0;
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-heading-compressed);
+  letter-spacing: 0.04em;
   color: #fff;
 }
 
@@ -471,7 +712,7 @@ section .container {
 .counts .count-box p {
   padding: 0;
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-site);
   font-size: 14px;
 }
 
@@ -490,7 +731,7 @@ section .container {
   text-transform: uppercase;
   display: block;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-site);
   color: #fff;
 }
 
@@ -647,7 +888,7 @@ section .container {
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-site);
   color: #1c7d32;
   margin-bottom: 10px;
 }
@@ -763,6 +1004,69 @@ section .container {
 
 .services .icon-box:hover h4 a, .services .icon-box:hover p {
   color: #12d640;
+}
+
+/* Experience: two-column card head (text block | logo column); nested row flush inside padded card */
+#experience .experience-card-head.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#experience .experience-card-head__text,
+#experience .experience-card-head__logo {
+  min-width: 0;
+}
+
+/* Keep logos inside the grid column (inline row); flex aligns without relying on inline text */
+#experience .experience-card-head__logo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+#experience .experience-card-head__logo img {
+  min-width: 0;
+  flex-shrink: 1;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#experience .experience-card-head__dates {
+  font-size: 0.875rem;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: left;
+  line-height: 1.35;
+}
+
+/* Experience section — mobile: logos capped to column width; justify body copy */
+@media (max-width: 767.98px) {
+  #experience .icon-box {
+    padding: 22px 16px;
+    overflow-x: hidden;
+  }
+
+  /* Tighter height on small screens; width still bounded by column (see global logo img rules) */
+  #experience .experience-card-head__logo img {
+    max-height: 64px !important;
+  }
+
+  #experience .icon-box ul {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    overflow-wrap: anywhere;
+    padding-left: 1.1rem;
+  }
+
+  #experience .icon-box ul li {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 0.5rem;
+  }
 }
 
 /*--------------------------------------------------------------
