@@ -128,9 +128,14 @@
     }
   });
 
-  // Porfolio isotope and filter
+  // Porfolio isotope and filter (skip when grid is not present, e.g. WIP portfolio)
   $(window).on('load', function() {
-    var portfolioIsotope = $('.portfolio-container').isotope({
+    var $portfolioContainer = $('.portfolio-container');
+    if (!$portfolioContainer.length) {
+      return;
+    }
+
+    var portfolioIsotope = $portfolioContainer.isotope({
       itemSelector: '.portfolio-item',
       layoutMode: 'fitRows'
     });
