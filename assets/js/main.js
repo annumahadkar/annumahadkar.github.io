@@ -23,6 +23,9 @@
         if (hash == '#header') {
           $('#header').removeClass('header-top');
           $("section").removeClass('section-show');
+          if (typeof window.loadHeaderBgVideoIfNeeded === 'function') {
+            window.loadHeaderBgVideoIfNeeded();
+          }
           return;
         }
 

@@ -66,18 +66,8 @@
   <!-- End Google Tag Manager (noscript) -->
   <!-- ======= Header ======= -->
   <header id="header" class="header-tops">
-    <video id="header-bg-video" class="header-bg-video" muted loop playsinline autoplay aria-hidden="true"></video>
-    <script>
-      (function () {
-        var v = document.getElementById('header-bg-video');
-        if (!v) return;
-        var pick1 = Math.random() < 0.5;
-        v.src = 'assets/img/background/' + (pick1 ? '1' : '2') + '.mp4';
-        v.load();
-        var p = v.play();
-        if (p && typeof p.catch === 'function') p.catch(function () { });
-      })();
-    </script>
+    <video id="header-bg-video" class="header-bg-video" muted loop playsinline
+      poster="assets/img/background/bg.jpg" preload="none" aria-hidden="true"></video>
 
     <div class="container">
 
@@ -933,6 +923,33 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      function loadHeaderBgVideoIfNeeded() {
+        var root = document.getElementById('header');
+        var v = document.getElementById('header-bg-video');
+        if (!v || v.getAttribute('data-bg-loaded') === '1') return;
+        if (root && root.classList.contains('header-top')) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        v.setAttribute('data-bg-loaded', '1');
+        v.src = 'assets/img/background/' + (Math.random() < 0.5 ? '1' : '2') + '.mp4';
+        v.load();
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function () { });
+      }
+      window.loadHeaderBgVideoIfNeeded = loadHeaderBgVideoIfNeeded;
+      function schedule() {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(loadHeaderBgVideoIfNeeded);
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', schedule);
+      } else {
+        schedule();
+      }
+    })();
+  </script>
 
 </body>
 

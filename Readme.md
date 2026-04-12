@@ -1,7 +1,6 @@
-# Personal Portfolio 🔥
-> https://annumahadkar.github.io/
+# Personal Portfolio and CV
 
-## License
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+Static site for **Antra Patel** — professional portfolio and online résumé (experience, projects, skills, and contact). Hosted on **GitHub Pages**.
 
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+**Live site:** [annumahadkar.github.io](https://annumahadkar.github.io/)
+
