@@ -33,6 +33,13 @@
   <meta name="twitter:description" content="Test automation, Playwright, Selenium, API testing, and CI/CD.">
   <meta name="twitter:image" content="https://annumahadkar.github.io/assets/img/profile.jpg">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -102,13 +109,14 @@
 
       <h1><a href="index.html"><span class="hero-name__word">Antra</span><span
             class="hero-name__word">Mahadkar</span><span class="hero-name__word">Patel</span></a></h1>
-      <h2 style="color:#fff">I'm <span class="typing" style="color:#12D640"></span></h2>
+      <h2 style="color:#fff">I'm <span class="typing"></span><span id="dynamic-emoji" class="emoji"
+          style="margin-left: 8px;"></span></h2>
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="#header"> <span>Home</span></a></li>
           <li><a href="#about"><span>About</span></a></li>
-          <li><a href="#education"> <span>Education</span></a></li>
           <li><a href="#experience"> <span>Experience</span></a></li>
+          <li><a href="#education"> <span>Education</span></a></li>
           <li><a href="#portfolio"> <span>Projects</span></a></li>
           <li><a href="#skills"> <span>Skills</span></a></li>
           <!-- <li><a href="assets/Antra_Mahadkar_CV.pdf" target="_blank"> <span>Resume</span></a></li> -->
@@ -241,6 +249,150 @@
   </section>
   <!-- End About Section -->
 
+  <!-- Start Experience Section -->
+  <section id="experience" class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Experience</h2>
+      </div>
+      <div class="row">
+
+        <!-- RAKUTEN INDIA SECTION -->
+        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="row experience-card-head align-items-start mb-3">
+            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
+              <h4 class="mb-0" style="text-align:left; margin: 0;">
+                <a href="https://corp.rakuten.co.in/about-us/" style="color:#12d640" target="_blank"
+                  rel="noopener noreferrer">Rakuten India</a>
+              </h4>
+              <div class="mt-2">
+                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Senior SDET - I</em></h4>
+                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">July 2025 - Present</h5>
+              </div>
+            </div>
+            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
+              <img src="assets/img/education/rakuten.svg" class="img-fluid" alt="Rakuten India Logo"
+                style="max-height: 100px; width: auto; max-width: 100%; object-fit: contain; background: transparent; border-radius: 8px; padding: 4px;">
+            </div>
+          </div>
+          <ul style="text-align:left;">
+            <li>Owning and architecting scalable Playwright-based end-to-end automation frameworks for multiple
+              business-critical enterprise modules at Rakuten Japan.</li>
+            <li>Driving test strategy, automation planning, and framework design to achieve high coverage,
+              stability, and faster regression cycles.</li>
+            <li>Leveraging advanced Playwright features (Test Runner, Fixtures, Tracing, Cross-Browser) to build
+              reliable and debuggable test suites.</li>
+            <li>Developing maintainable automation using JavaScript / TypeScript and Node.js, following clean
+              coding and modular design principles.</li>
+            <li>Implementing POM and data-driven testing patterns for long-term framework scalability.</li>
+            <li>Integrating automation into CI/CD pipelines for continuous quality validation and early defect
+              detection.</li>
+            <li>Collaborating cross-functionally and mentoring junior engineers to enforce QA best practices.</li>
+          </ul>
+        </div>
+
+
+        <!-- PORTER SECTION -->
+        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="row experience-card-head align-items-start mb-3">
+            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
+              <h4 class="mb-0" style="text-align:left; margin: 0;">
+                <a href="https://porter.in/" style="color:#12d640" target="_blank" rel="noopener noreferrer">The
+                  Porter</a>
+              </h4>
+              <div class="mt-2">
+                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Senior Software QA & SDET</em></h4>
+                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">October 2019 - July 2025</h5>
+              </div>
+            </div>
+            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
+              <img src="assets/img/education/porter.svg" class="img-fluid" alt="The Porter Logo"
+                style="max-height: 60px; width: auto; max-width: 100%; object-fit: contain; background: transparent; border-radius: 8px; padding: 4px;">
+            </div>
+          </div>
+          <ul style="text-align:left;">
+            <li>Developed and maintained robust test automation frameworks using Java, Selenium, and Appium,
+              enhancing
+              test coverage and reducing manual testing efforts across web and mobile platforms.</li>
+            <li>Implemented API testing strategies using REST Assured, ensuring backend services met functional
+              and
+              performance requirements.</li>
+          </ul>
+        </div>
+
+        <!-- CIP Technologies SECTION -->
+        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="row experience-card-head align-items-start mb-3">
+            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
+              <h4 class="mb-0" style="text-align:left; margin: 0;">
+                <a href="#" style="color:#12d640">CIP Technologies</a>
+              </h4>
+              <div class="mt-2">
+                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Software QA </em></h4>
+                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">December 2018 - October 2019</h5>
+              </div>
+            </div>
+            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
+              <img src="assets/img/education/cip.png" class="img-fluid" alt="CIP Technologies Logo"
+                style="max-height: 60px; width: auto; max-width: 100%; object-fit: contain; background: #fff; border-radius: 8px; padding: 4px;">
+            </div>
+          </div>
+          <ul style="text-align:left;">
+            <li>Collaborated with clients like Myntra to conduct comprehensive website testing, ensuring optimal
+              user
+              experience.</li>
+            <li>Designed and executed detailed test cases, identifying and resolving critical issues before
+              deployment.</li>
+            <li>Enhanced testing efficiency by implementing automated testing tools, reducing testing time by 30%.
+            </li>
+            <li>Performed API testing using Postman, manual testing, and mobile testing on Android/iOS platforms.
+            </li>
+          </ul>
+        </div>
+
+        <!-- MVJ College of Engg and Tech SECTION -->
+        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="row experience-card-head align-items-start mb-3">
+            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
+              <h4 class="mb-0" style="text-align:left; margin: 0;">
+                <a href="#" style="color:#12d640">MVJ College of Engg and Tech</a>
+              </h4>
+              <div class="mt-2">
+                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Assistant Professor - Technical
+                  </em></h4>
+                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">January 2018 - December 2018</h5>
+              </div>
+            </div>
+            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
+              <img src="assets/img/education/mvj.png" class="img-fluid" alt="MVJ College of Engg and Tech Logo"
+                style="max-height: 120px; width: auto; max-width: 100%; object-fit: contain; background: transparent; border-radius: 8px; padding: 4px;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Parul University SECTION -->
+        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="row experience-card-head align-items-start mb-3">
+            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
+              <h4 class="mb-0" style="text-align:left; margin: 0;">
+                <a href="#" style="color:#12d640">Parul University</a>
+              </h4>
+              <div class="mt-2">
+                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Assistant Professor - Technical
+                  </em></h4>
+                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">August 2012 - March 2017</h5>
+              </div>
+            </div>
+            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
+              <img src="assets/img/education/pu.svg" class="img-fluid" alt="Parul University Logo"
+                style="max-height: 90px; width: auto; max-width: 100%; object-fit: contain; background: #fff; border-radius: 8px; padding: 4px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Experience Section -->
 
   <!-- ======= Education Section ======= -->
   <section id="education" class="services">
@@ -321,149 +473,6 @@
     </div>
   </section>
   <!-- End Education Section -->
-
-  <!-- Start Experience Section -->
-  <section id="experience" class="services">
-    <div class="container">
-      <div class="section-title">
-        <h2>Experience</h2>
-      </div>
-      <div class="row">
-
-        <!-- RAKUTEN INDIA SECTION -->
-        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-          <div class="row experience-card-head align-items-start mb-3">
-            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
-              <h4 class="mb-0" style="text-align:left; margin: 0;">
-                <a href="https://corp.rakuten.co.in/about-us/" style="color:#12d640" target="_blank"
-                  rel="noopener noreferrer">Rakuten India</a>
-              </h4>
-              <div class="mt-2">
-                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Senior SDET - I</em></h4>
-                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">July 2025 - Present</h5>
-              </div>
-            </div>
-            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
-              <img src="assets/img/education/rakuten.svg" class="img-fluid" alt="Rakuten India Logo"
-                style="max-height: 100px; width: auto; max-width: 100%; object-fit: contain; background: transparent; border-radius: 8px; padding: 4px;">
-            </div>
-          </div>
-          <ul style="text-align:left;">
-            <li>Owning and architecting scalable Playwright-based end-to-end automation frameworks for multiple
-              business-critical enterprise modules at Rakuten Japan.</li>
-            <li>Driving test strategy, automation planning, and framework design to achieve high coverage,
-              stability, and faster regression cycles.</li>
-            <li>Leveraging advanced Playwright features (Test Runner, Fixtures, Tracing, Cross-Browser) to build
-              reliable and debuggable test suites.</li>
-            <li>Developing maintainable automation using JavaScript / TypeScript and Node.js, following clean
-              coding and modular design principles.</li>
-            <li>Implementing POM and data-driven testing patterns for long-term framework scalability.</li>
-            <li>Integrating automation into CI/CD pipelines for continuous quality validation and early defect
-              detection.</li>
-            <li>Collaborating cross-functionally and mentoring junior engineers to enforce QA best practices.</li>
-          </ul>
-        </div>
-
-
-        <!-- PORTER SECTION -->
-        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-          <div class="row experience-card-head align-items-start mb-3">
-            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
-              <h4 class="mb-0" style="text-align:left; margin: 0;">
-                <a href="https://porter.in/" style="color:#12d640" target="_blank" rel="noopener noreferrer">The
-                  Porter</a>
-              </h4>
-              <div class="mt-2">
-                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Senior Software QA & SDET</em></h4>
-                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">October 2019 - July 2025</h5>
-              </div>
-            </div>
-            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
-              <img src="assets/img/education/porter.svg" class="img-fluid" alt="The Porter Logo"
-                style="max-height: 60px; width: auto; max-width: 100%; object-fit: contain; background: transparent; border-radius: 8px; padding: 4px;">
-            </div>
-          </div>
-          <ul style="text-align:left;">
-              <li>Developed and maintained robust test automation frameworks using Java, Selenium, and Appium,
-                enhancing
-                test coverage and reducing manual testing efforts across web and mobile platforms.</li>
-              <li>Implemented API testing strategies using REST Assured, ensuring backend services met functional
-                and
-                performance requirements.</li>
-            </ul>
-        </div>
-
-        <!-- CIP Technologies SECTION -->
-        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-          <div class="row experience-card-head align-items-start mb-3">
-            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
-              <h4 class="mb-0" style="text-align:left; margin: 0;">
-                <a href="#" style="color:#12d640">CIP Technologies</a>
-              </h4>
-              <div class="mt-2">
-                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Software QA </em></h4>
-                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">December 2018 - October 2019</h5>
-              </div>
-            </div>
-            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
-              <img src="assets/img/education/cip.png" class="img-fluid" alt="CIP Technologies Logo"
-                style="max-height: 60px; width: auto; max-width: 100%; object-fit: contain; background: #fff; border-radius: 8px; padding: 4px;">
-            </div>
-          </div>
-          <ul style="text-align:left;">
-              <li>Collaborated with clients like Myntra to conduct comprehensive website testing, ensuring optimal
-                user
-                experience.</li>
-              <li>Designed and executed detailed test cases, identifying and resolving critical issues before
-                deployment.</li>
-              <li>Enhanced testing efficiency by implementing automated testing tools, reducing testing time by 30%.
-              </li>
-              <li>Performed API testing using Postman, manual testing, and mobile testing on Android/iOS platforms.
-              </li>
-          </ul>
-        </div>
-
-        <!-- MVJ College of Engg and Tech SECTION -->
-        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-          <div class="row experience-card-head align-items-start mb-3">
-            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
-              <h4 class="mb-0" style="text-align:left; margin: 0;">
-                <a href="#" style="color:#12d640">MVJ College of Engg and Tech</a>
-              </h4>
-              <div class="mt-2">
-                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Assistant Professor - Technical </em></h4>
-                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">January 2018 - December 2018</h5>
-              </div>
-            </div>
-            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
-              <img src="assets/img/education/mvj.png" class="img-fluid" alt="MVJ College of Engg and Tech Logo"
-                style="max-height: 120px; width: auto; max-width: 100%; object-fit: contain; background: transparent; border-radius: 8px; padding: 4px;">
-            </div>
-          </div>
-        </div>
-
-        <!-- Parul University SECTION -->
-        <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-          <div class="row experience-card-head align-items-start mb-3">
-            <div class="col-8 col-sm-8 col-md-9 experience-card-head__text" data-aos="fade-up">
-              <h4 class="mb-0" style="text-align:left; margin: 0;">
-                <a href="#" style="color:#12d640">Parul University</a>
-              </h4>
-              <div class="mt-2">
-                <h4 class="mb-0" style="text-align:left;color:#fff; margin: 0;"><em>Assistant Professor - Technical </em></h4>
-                <h5 class="mb-0 mt-1 experience-card-head__dates" style="margin: 0;">August 2012 - March 2017</h5>
-              </div>
-            </div>
-            <div class="col-4 col-sm-4 col-md-3 experience-card-head__logo text-end align-self-start">
-              <img src="assets/img/education/pu.svg" class="img-fluid" alt="Parul University Logo"
-                style="max-height: 90px; width: auto; max-width: 100%; object-fit: contain; background: #fff; border-radius: 8px; padding: 4px;">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Experience Section -->
 
   <!-- Start Project Section -->
   <section id="portfolio" class="portfolio">
@@ -955,11 +964,16 @@
   <script src="assets/vendor/venobox/venobox.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
   <script type="text/javascript">
+    var emojis = ["🚀", "🤖", "🛠️", "🕵️‍♂️"];
     var typed = new Typed('.typing', {
-      strings: ["Senior QA Engineer 🚀", "Automation Developer 🤖", "Framework Designer 🛠️", "System Sleuth 🕵️‍♂️"],
+      strings: ["Senior QA Engineer", "Automation Developer", "Framework Designer", "System Sleuth"],
       loop: true,
       typeSpeed: 65,
-      backSpeed: 65
+      backSpeed: 65,
+      preStringTyped: function (arrayPos, self) {
+        var emojiEl = document.getElementById('dynamic-emoji');
+        if (emojiEl) emojiEl.innerText = emojis[arrayPos];
+      }
     });
   </script>
 
