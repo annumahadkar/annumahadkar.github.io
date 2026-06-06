@@ -30,6 +30,14 @@
 html {
   scrollbar-gutter: stable;
   font-family: var(--font-site);
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -89,11 +97,12 @@ h6 {
   transition: ease-in-out 0s;
   position: relative;
   height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   z-index: 997;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible;
   isolation: isolate;
 }
 
@@ -615,20 +624,27 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  overflow: hidden;
-  position: absolute;
+  position: relative;
   width: 100%;
-  top: 140px;
-  bottom: 100%;
-  opacity: 0;
-  z-index: 2;
-}
-
-section.section-show {
-  top: 70px;
+  top: auto;
   bottom: auto;
   opacity: 1;
-  padding-bottom: 0px;
+  z-index: 2;
+  overflow-x: hidden;
+  overflow-y: visible;
+  box-sizing: border-box;
+  /* Each main block reads as a "screen" while still growing with content */
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 40px 0;
+  /* Offset hash-link / programmatic scrolls so headings clear the sticky bar */
+  scroll-margin-top: 70px;
+}
+
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 56px;
+  }
 }
 
 section .container {
@@ -636,13 +652,89 @@ section .container {
   padding: 30px;
 }
 
-@media (max-width: 768px) {
-  section {
-    top: 120px;
-  }
+/*--------------------------------------------------------------
+# Compact sticky nav (overlay — no layout shift)
+--------------------------------------------------------------*/
+.compact-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  height: 70px;
+  background: rgba(9, 32, 58, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 180ms ease;
+  pointer-events: none;
+}
 
-  section.section-show {
-    top: 80px;
+body.nav-shown .compact-nav {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.compact-nav .compact-nav__brand {
+  font-family: var(--font-heading-compressed);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.compact-nav .compact-nav__brand a {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
+
+.compact-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.compact-nav ul a {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #dee2e6;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.compact-nav ul a:hover,
+.compact-nav ul li.active a {
+  background: rgba(18, 214, 64, 0.16);
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .compact-nav ul {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .compact-nav {
+    height: 56px;
+    padding: 0 14px;
   }
 }
 

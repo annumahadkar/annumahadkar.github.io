@@ -15,62 +15,116 @@
     }
   }
 
-  // Nav Menu
-  $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
+  function getCompactBarHeight() {
+    return window.matchMedia('(max-width: 768px)').matches ? 56 : 70;
+  }
+
+  /**
+   * Build a fixed overlay nav once. Lives outside #header, so showing/hiding it
+   * does NOT change document height (which is what caused earlier scroll feedback).
+   */
+  function buildCompactNav() {
+    if (document.querySelector('.compact-nav')) {
+      return;
+    }
+    var $src = $('#header .nav-menu ul');
+    if (!$src.length) {
+      return;
+    }
+    var $bar = $('<div class="compact-nav" role="navigation" aria-label="Section navigation"></div>');
+    var $brand = $('<div class="compact-nav__brand"><a href="#header">Antra Mahadkar Patel</a></div>');
+    var $ul = $('<ul></ul>').html($src.html());
+    $bar.append($brand).append($ul);
+    $('body').append($bar);
+  }
+
+  var NAV_SECTION_IDS = ['header', 'about', 'experience', 'education', 'portfolio', 'skills', 'links', 'contacts'];
+
+  function updateActiveNavFromScroll() {
+    var probe = window.pageYOffset + getCompactBarHeight() + 24;
+    var activeId = 'header';
+    for (var i = 0; i < NAV_SECTION_IDS.length; i++) {
+      var sid = NAV_SECTION_IDS[i];
+      var el = document.getElementById(sid);
+      if (!el) {
+        continue;
+      }
+      var top = el.getBoundingClientRect().top + window.pageYOffset;
+      if (top <= probe) {
+        activeId = sid;
+      }
+    }
+    var href = '#' + activeId;
+    $('.nav-menu li, .mobile-nav li, .compact-nav li').removeClass('active');
+    $('.nav-menu a[href="' + href + '"], .mobile-nav a[href="' + href + '"], .compact-nav a[href="' + href + '"]')
+      .closest('li').addClass('active');
+  }
+
+  function smoothScrollTo(targetY) {
+    var prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: Math.max(0, targetY), behavior: prefersReduce ? 'auto' : 'smooth' });
+  }
+
+  function scrollToSectionElement(el) {
+    if (!el) {
+      return;
+    }
+    if (el.id === 'header') {
+      smoothScrollTo(0);
+      return;
+    }
+    var top = el.getBoundingClientRect().top + window.pageYOffset - getCompactBarHeight();
+    smoothScrollTo(top);
+  }
+
+  /* CSS-only show/hide of the compact bar — no layout shift, so no scroll feedback. */
+  var scrollTicking = false;
+  $(window).on('scroll', function() {
+    if (scrollTicking) {
+      return;
+    }
+    scrollTicking = true;
+    window.requestAnimationFrame(function() {
+      scrollTicking = false;
+      var y = window.pageYOffset || 0;
+      var threshold = window.innerHeight * 0.6;
+      var shown = document.body.classList.contains('nav-shown');
+      if (!shown && y > threshold) {
+        document.body.classList.add('nav-shown');
+      } else if (shown && y < threshold - 80) {
+        document.body.classList.remove('nav-shown');
+      }
+      updateActiveNavFromScroll();
+    });
+  });
+
+  // Single-page scroll for any anchor link (hero nav, mobile nav, compact nav).
+  $(document).on('click', '.nav-menu a, .mobile-nav a, .compact-nav a', function(e) {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var hash = this.hash;
-      var target = $(hash);
-      if (target.length) {
+      var $target = hash ? $(hash) : $();
+      if ($target.length) {
         e.preventDefault();
 
-        if ($(this).parents('.nav-menu, .mobile-nav').length) {
-          $('.nav-menu .active, .mobile-nav .active').removeClass('active');
-          $(this).closest('li').addClass('active');
-        }
-
-        if (hash == '#header') {
-          $('#header').removeClass('header-top');
-          $("section").removeClass('section-show');
-          closeMobileNav();
-          window.scrollTo(0, 0);
-          if (typeof window.loadHeaderBgVideoIfNeeded === 'function') {
-            window.loadHeaderBgVideoIfNeeded();
-          }
-          return false;
-        }
-
-        if (!$('#header').hasClass('header-top')) {
-          $('#header').addClass('header-top');
-          setTimeout(function() {
-            $("section").removeClass('section-show');
-            $(hash).addClass('section-show');
-          }, 350);
-        } else {
-          $("section").removeClass('section-show');
-          $(hash).addClass('section-show');
-        }
+        $('.nav-menu li, .mobile-nav li, .compact-nav li').removeClass('active');
+        $('.nav-menu a[href="' + hash + '"], .mobile-nav a[href="' + hash + '"], .compact-nav a[href="' + hash + '"]')
+          .closest('li').addClass('active');
 
         closeMobileNav();
+        scrollToSectionElement($target.get(0));
+
+        if (hash === '#header' && typeof window.loadHeaderBgVideoIfNeeded === 'function') {
+          window.loadHeaderBgVideoIfNeeded();
+        }
+
+        if (history.replaceState) {
+          history.replaceState(null, '', hash || '#');
+        }
 
         return false;
-
       }
     }
   });
-
-  // Activate/show sections on load with hash links
-  if (window.location.hash) {
-    var initial_nav = window.location.hash;
-    if ($(initial_nav).length) {
-      $('#header').addClass('header-top');
-      $('.nav-menu .active, .mobile-nav .active').removeClass('active');
-      $('.nav-menu, .mobile-nav').find('a[href="' + initial_nav + '"]').parent('li').addClass('active');
-      setTimeout(function() {
-        $("section").removeClass('section-show');
-        $(initial_nav).addClass('section-show');
-      }, 350);
-    }
-  }
 
   // Mobile Navigation
   if ($('.nav-menu').length) {
@@ -95,6 +149,24 @@
     });
   } else if ($(".mobile-nav, .mobile-nav-toggle").length) {
     $(".mobile-nav, .mobile-nav-toggle").hide();
+  }
+
+  buildCompactNav();
+
+  // Deep link: scroll to hash on load (after compact nav + mobile nav exist for active state)
+  if (window.location.hash) {
+    var initial = window.location.hash;
+    var $initial = $(initial);
+    if ($initial.length) {
+      window.requestAnimationFrame(function() {
+        scrollToSectionElement($initial.get(0));
+        updateActiveNavFromScroll();
+      });
+    }
+  } else {
+    $(function() {
+      updateActiveNavFromScroll();
+    });
   }
 
   // jQuery counterUp
